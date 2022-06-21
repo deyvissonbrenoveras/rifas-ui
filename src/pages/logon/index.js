@@ -1,7 +1,15 @@
-import { Container } from "./styles";
+import { Container, LogonBox } from "./styles";
 
 function Logon() {
-  return <Container>Logon</Container>;
+  return (
+    <Container>
+      <LogonBox>
+        <h1>Logon</h1>
+        <input name="email" placeholder="e-mail" />
+        <input type="password" name="password" placeholder="senha" />
+      </LogonBox>
+    </Container>
+  );
 }
 
 export default Logon;
