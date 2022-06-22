@@ -3,7 +3,6 @@ import styled from "styled-components";
 export const Container = styled.div`
   height: 100%;
 
-  border: 1px solid green;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -11,8 +10,41 @@ export const Container = styled.div`
 `;
 
 export const LogonBox = styled.div`
-  border: 1px solid red;
   width: 100%;
   height: 100%;
-  max-width: 600px;
+  max-width: 500px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+`;
+
+export const Form = styled.form`
+  width: 100%;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  input {
+    width: 100%;
+    padding: 10px;
+    border: 0;
+    border-radius: 15px;
+    height: 30px;
+    margin: 10px;
+  }
+
+  button {
+    width: 100%;
+    max-width: 200px;
+    height: 35px;
+    margin-top: 15px;
+    background-color: blue;
+    color: white;
+    border: 0;
+    border-radius: 15px;
+  }
 `;
