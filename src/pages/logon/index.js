@@ -1,15 +1,23 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux/es/exports";
 import api from "./../../services/api";
+import authSlice from "../../store/reducers/authReducer";
 
 import { Container, LogonBox, Form } from "./styles";
 function Logon() {
+  const dispatch = useDispatch();
   const [state, setState] = useState({ email: "", password: "" });
+  const token = useSelector((store) => store.auth.token);
+
+  useEffect(() => {
+    console.log(token);
+  }, [token]);
 
   async function handleSubmit(event) {
     event.preventDefault();
-    console.log(state);
     const response = await api.post("auth", state);
-    console.log(response);
+    const token = response.data.token;
+    dispatch(authSlice.actions.setToken(token));
   }
   return (
     <Container>
