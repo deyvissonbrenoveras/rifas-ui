@@ -1,5 +1,6 @@
 import { takeLatest, all, call, put } from "redux-saga/effects";
 import api from "../../../services/api";
+import history from "../../../services/history";
 
 import { logonSuccess, logonFailed } from "./actions";
 
@@ -10,7 +11,7 @@ function* logonRequest({ payload }) {
     const { token } = response.data;
     api.defaults.headers.Authorization = `Bearer ${token}`;
     yield put(logonSuccess(token));
-    //history.push('/dashboard');
+    history.push("/");
   } catch (err) {
     yield put(logonFailed());
     // toast.error(
