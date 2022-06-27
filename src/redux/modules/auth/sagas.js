@@ -12,7 +12,7 @@ function* logonRequest({ payload }) {
     const { token } = response.data;
     api.defaults.headers.Authorization = `Bearer ${token}`;
     yield put(logonSuccess(token));
-    history.push("/");
+    history.push("/create-raffle");
   } catch (err) {
     yield put(logonFailed());
     toast.error(

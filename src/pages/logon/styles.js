@@ -10,9 +10,13 @@ export const Container = styled.div`
 `;
 
 export const LogonBox = styled.div`
+  background: #3f4e4f;
+  border-radius: 15px;
   width: 100%;
   height: 100%;
   max-width: 500px;
+  max-height: 800px;
+  color: #ffffff;
 
   display: flex;
   flex-direction: column;
@@ -42,7 +46,7 @@ export const Form = styled.form`
     max-width: 200px;
     height: 35px;
     margin-top: 15px;
-    background-color: blue;
+    background-color: #0f3460;
     color: white;
     border: 0;
     border-radius: 15px;

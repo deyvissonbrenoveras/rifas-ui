@@ -8,6 +8,7 @@ import { store, persistor } from "./redux";
 import history from "./services/history";
 
 import "react-toastify/dist/ReactToastify.css";
+import CreateRaffle from "./pages/dashboard/createRaffle";
 
 function App() {
   return (
@@ -17,6 +18,9 @@ function App() {
           <Switch>
             <Route exact path="/logon">
               <Logon />
+            </Route>
+            <Route exact path="/create-raffle">
+              <CreateRaffle />
             </Route>
             <Route exact path="/">
               <div>helloworld</div>
