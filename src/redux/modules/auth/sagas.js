@@ -1,8 +1,9 @@
 import { takeLatest, all, call, put } from "redux-saga/effects";
 import api from "../../../services/api";
+import { toast } from "react-toastify";
 import history from "../../../services/history";
 
-import { logonSuccess, logonFailed } from "./actions";
+import { logonSuccess, logonFailed, logOut } from "./actions";
 
 function* logonRequest({ payload }) {
   try {
@@ -14,10 +15,27 @@ function* logonRequest({ payload }) {
     history.push("/");
   } catch (err) {
     yield put(logonFailed());
-    // toast.error(
-    //   "Erro ao fazer login, por favor entre em contato com nossa equipe"
-    // );
+    toast.error(
+      "Erro ao fazer login, por favor entre em contato com nossa equipe"
+    );
   }
 }
 
-export default all([takeLatest("AUTH/LOGON_REQUEST", logonRequest)]);
+export function* setToken({ payload }) {
+  if (!payload) {
+    yield put(logOut());
+    return;
+  }
+  const { token } = payload.auth;
+
+  if (token) {
+    api.defaults.headers.Authorization = `Bearer ${token}`;
+  } else {
+    yield put(logOut());
+  }
+}
+
+export default all([
+  takeLatest("persist/REHYDRATE", setToken),
+  takeLatest("AUTH/LOGON_REQUEST", logonRequest),
+]);

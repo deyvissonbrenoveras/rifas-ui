@@ -11,6 +11,13 @@ export function logonSuccess(token) {
     payload: token,
   };
 }
+
+export function logOut() {
+  return {
+    type: "AUTH/LOGOUT",
+  };
+}
+
 export function logonFailed() {
   return {
     type: "AUTH/LOGON_FAILED",
