@@ -11,6 +11,12 @@ export default function CreateRaffle() {
     title: "",
     description: "",
     quotaQuantity: 100,
+    quotaPrice: 1,
+    allowedQuotasPerPurchase: 20,
+    categoryId: 2,
+    firstImageId: 2,
+    secondImageId: 3,
+    thirdImageId: 4,
   });
 
   function handleSubmit(event) {
@@ -41,6 +47,26 @@ export default function CreateRaffle() {
           label="Quantidade de cotas"
           name="quotaQuantity"
           placeholder="Insira a quantidade de cotas"
+          type="number"
+          minValue={1}
+          maxValue={10000}
+          value={form}
+          setValue={setForm}
+        />
+        <Input
+          label="Preço da quota"
+          name="quotaPrice"
+          placeholder="Insira o preço de cada cota"
+          type="number"
+          minValue={1}
+          maxValue={10000}
+          value={form}
+          setValue={setForm}
+        />
+        <Input
+          label="Quantidade de cotas permitidas por compra"
+          name="allowedQuotasPerPurchase"
+          placeholder="Insira o preço de cada cota"
           type="number"
           minValue={1}
           maxValue={10000}

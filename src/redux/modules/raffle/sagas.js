@@ -7,7 +7,7 @@ import { createRaffleSuccess, raffleFailed } from "./actions";
 function* createRaffle({ payload }) {
   try {
     const { raffle } = payload;
-    const response = yield call(api.post, "raffles", { raffle });
+    const response = yield call(api.post, "raffles", raffle);
     yield put(createRaffleSuccess(response.data));
     toast.success("A rifa foi criada com sucesso!");
   } catch (err) {

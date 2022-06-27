@@ -2,7 +2,6 @@ import { createGlobalStyle } from "styled-components";
 
 const GlobalStyle = createGlobalStyle`
     html, body, #root {
-        background: #2C3639;
         height: 100vh
     }
     * {
