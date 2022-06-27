@@ -1,39 +1,51 @@
-import React, { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
-import { Container, LogonBox, Form } from "./styles";
-
+import React, { useState } from "react";
+import { Input, Button, Row, Col, Form } from "antd";
+import { useDispatch, useSelector } from "react-redux";
 import { logonRequest } from "../../redux/modules/auth/actions";
+
+import { UserOutlined } from "@ant-design/icons";
 function Logon() {
   const dispatch = useDispatch();
-  const [state, setState] = useState({ email: "", password: "" });
+  const loading = useSelector((store) => store.auth.loading);
 
-  async function handleSubmit(event) {
-    const { email, password } = state;
-    event.preventDefault();
+  async function handleSubmit(data) {
+    const { email, password } = data;
     dispatch(logonRequest(email, password));
   }
   return (
-    <Container>
-      <LogonBox>
-        <h1>Logon</h1>
-        <Form onSubmit={handleSubmit}>
-          <input
-            name="email"
-            placeholder="e-mail"
-            value={state.email}
-            onChange={(e) => setState({ ...state, email: e.target.value })}
-          />
-          <input
-            type="password"
-            name="password"
-            placeholder="senha"
-            value={state.password}
-            onChange={(e) => setState({ ...state, password: e.target.value })}
-          />
-          <button type="submit">Entrar</button>
-        </Form>
-      </LogonBox>
-    </Container>
+    <>
+      <Row justify="center" align="center">
+        <h1>Rifas</h1>
+        <Col span={24}>
+          <Row justify="center" align="center">
+            <Col xs={24} sm={12} md={8} lg={6}>
+              <Form onFinish={handleSubmit}>
+                <Form.Item name="email">
+                  <Input
+                    placeholder="e-mail"
+                    size="large"
+                    prefix={<UserOutlined />}
+                  />
+                </Form.Item>
+                <Form.Item name="password">
+                  <Input.Password placeholder="senha" />
+                </Form.Item>
+
+                <Button
+                  htmlType="submit"
+                  type="primary"
+                  shape="round"
+                  block
+                  loading={loading}
+                >
+                  Entrar
+                </Button>
+              </Form>
+            </Col>
+          </Row>
+        </Col>
+      </Row>
+    </>
   );
 }
 

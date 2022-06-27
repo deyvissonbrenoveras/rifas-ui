@@ -12,6 +12,19 @@ export function createRaffleSuccess(raffle) {
   };
 }
 
+export function loadAllRafflesRequest() {
+  return {
+    type: "RAFFLE/LOAD_ALL_REQUEST",
+  };
+}
+
+export function loadAllRafflesSuccess(raffles) {
+  return {
+    type: "RAFFLE/LOAD_ALL_SUCCESS",
+    payload: { raffles },
+  };
+}
+
 export function raffleFailed() {
   return {
     type: "RAFFLE/FAILED",

@@ -1,6 +1,6 @@
 import { takeLatest, all, call, put } from "redux-saga/effects";
 import api from "../../../services/api";
-import { toast } from "react-toastify";
+import { message } from "antd";
 import history from "../../../services/history";
 
 import { logonSuccess, logonFailed, logOut } from "./actions";
@@ -15,7 +15,7 @@ function* logonRequest({ payload }) {
     history.push("/create-raffle");
   } catch (err) {
     yield put(logonFailed());
-    toast.error(
+    message.error(
       "Erro ao fazer login, por favor entre em contato com nossa equipe"
     );
   }
