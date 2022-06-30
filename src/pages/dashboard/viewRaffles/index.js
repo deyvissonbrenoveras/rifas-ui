@@ -89,7 +89,6 @@ export default function ViewRaffles() {
                   title={<a href={item.href}>{item.title}</a>}
                   description={item.status}
                 />
-                sdafasdfsda
                 {item.description}
               </List.Item>
             )}
