@@ -14,12 +14,14 @@ export default function Routes() {
         path="/create-raffle"
         component={CreateRaffle}
         layout={DashboardLayout}
+        authRequired
       />
       <Route
         exact
         path="/view-raffles"
         component={ViewRaffles}
         layout={DashboardLayout}
+        authRequired
       />
 
       <Route exact path="/" component={<div>helloworld</div>} />
