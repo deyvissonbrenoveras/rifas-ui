@@ -27,13 +27,13 @@ export default function CreateRaffle() {
       >
         <Row>
           <Col xs={24}>
-            <ImageUpload name="firstImageId" />
+            <ImageUpload name="firstImageId" label="imagem 1" />
           </Col>
           <Col xs={24}>
-            <ImageUpload name="secondmageId" />
+            <ImageUpload name="secondmageId" label="imagem 2" />
           </Col>
           <Col xs={24}>
-            <ImageUpload name="thirdImageId" />
+            <ImageUpload name="thirdImageId" label="imagem 3" />
           </Col>
         </Row>
         <Row>
