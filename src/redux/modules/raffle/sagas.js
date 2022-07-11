@@ -5,6 +5,7 @@ import {
   createRaffleSuccess,
   raffleFailed,
   loadAllRafflesSuccess,
+  loadRaffledRequest,
 } from "./actions";
 
 function* createRaffle({ payload }) {
@@ -33,7 +34,21 @@ function* loadRaffles() {
   }
 }
 
+function* loadRaffle({ payload }) {
+  try {
+    const { id } = payload;
+    const response = yield call(api.get, `raffles/${id}`);
+    yield put(loadRaffledRequest(response.data));
+  } catch (err) {
+    yield put(raffleFailed());
+    message.error(
+      "Erro ao carregar as rifa, por favor entre em contato com nossa equipe"
+    );
+  }
+}
+
 export default all([
   takeLatest("RAFFLE/CREATE_REQUEST", createRaffle),
   takeLatest("RAFFLE/LOAD_ALL_REQUEST", loadRaffles),
+  takeLatest("RAFFLE/LOAD_RAFFLE_REQUEST", loadRaffle),
 ]);

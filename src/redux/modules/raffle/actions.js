@@ -18,6 +18,13 @@ export function loadAllRafflesRequest() {
   };
 }
 
+export function loadRaffledRequest(id) {
+  return {
+    type: "RAFFLE/LOAD_RAFFLE_REQUEST",
+    payload: { id },
+  };
+}
+
 export function loadAllRafflesSuccess(raffles) {
   return {
     type: "RAFFLE/LOAD_ALL_SUCCESS",

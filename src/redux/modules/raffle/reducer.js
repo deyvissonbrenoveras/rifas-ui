@@ -21,6 +21,15 @@ export default function authReducer(state = INITIAL_STATE, action) {
       return produce(state, (draft) => {
         draft.loading = true;
       });
+    case "RAFFLE/LOAD_RAFFLE_REQUEST":
+      return produce(state, (draft) => {
+        draft.loading = true;
+      });
+    case "RAFFLE/LOAD_RAFFLE_SUCCESS":
+      return produce(state, (draft) => {
+        draft.loading = false;
+        draft.raffle = action.payload.raffle;
+      });
     case "RAFFLE/LOAD_ALL_SUCCESS":
       return produce(state, (draft) => {
         draft.loading = false;
