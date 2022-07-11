@@ -8,7 +8,6 @@ export function ImageUpload({ name, label, ...rest }) {
 
   async function handleChange(e) {
     setLoading(true);
-    console.log(e);
     const data = new FormData();
     data.append("image", e.file);
     const response = await api.post("images", data);

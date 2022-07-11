@@ -50,9 +50,7 @@ export default function ViewRaffles() {
             itemLayout="vertical"
             size="large"
             pagination={{
-              onChange: (page) => {
-                console.log(page);
-              },
+              onChange: (page) => {},
               pageSize: 3,
             }}
             dataSource={raffles}
@@ -84,6 +82,9 @@ export default function ViewRaffles() {
                     src={item.firstImage.url}
                   />
                 }
+                onClick={() => {
+                  history.push(`/update-raffle/${item.id}`);
+                }}
               >
                 <List.Item.Meta
                   title={<a href={item.href}>{item.title}</a>}
