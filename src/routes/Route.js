@@ -6,7 +6,7 @@ export default function RouteWrapper({
   component: Component,
   layout: Layout,
   authRequired,
-  rest,
+  ...rest
 }) {
   const signed = useSelector((store) => store.auth.signed);
 
