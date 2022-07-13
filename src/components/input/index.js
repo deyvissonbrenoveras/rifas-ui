@@ -1,15 +1,18 @@
 import React from "react";
-
+import { Input as InputAntd } from "formik-antd";
 import { Label } from "./styles";
 
-export default function Input({ label, value, setValue, name, ...rest }) {
-  function handleChange(e) {
-    setValue({ ...value, [name]: e.target.value });
-  }
+export default function Input({
+  label,
+  name,
+  placeholder,
+  type = "text",
+  ...rest
+}) {
   return (
     <Label>
       {label}
-      <input value={value[name]} {...rest} onChange={handleChange} />
+      <InputAntd name={name} placeholder={placeholder} type={type} {...rest} />
     </Label>
   );
 }
