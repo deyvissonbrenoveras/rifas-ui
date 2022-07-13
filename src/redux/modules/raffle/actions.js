@@ -18,10 +18,17 @@ export function loadAllRafflesRequest() {
   };
 }
 
-export function loadRaffledRequest(id) {
+export function loadRaffleRequest(id) {
   return {
     type: "RAFFLE/LOAD_RAFFLE_REQUEST",
     payload: { id },
+  };
+}
+
+export function loadAllRaffleSuccess(raffle) {
+  return {
+    type: "RAFFLE/LOAD_RAFFLE_SUCCESS",
+    payload: { raffle },
   };
 }
 

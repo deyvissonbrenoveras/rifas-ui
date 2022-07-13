@@ -5,7 +5,7 @@ import {
   createRaffleSuccess,
   raffleFailed,
   loadAllRafflesSuccess,
-  loadRaffledRequest,
+  loadAllRaffleSuccess,
 } from "./actions";
 
 function* createRaffle({ payload }) {
@@ -38,7 +38,7 @@ function* loadRaffle({ payload }) {
   try {
     const { id } = payload;
     const response = yield call(api.get, `raffles/${id}`);
-    yield put(loadRaffledRequest(response.data));
+    yield put(loadAllRaffleSuccess(response.data));
   } catch (err) {
     yield put(raffleFailed());
     message.error(
