@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
 import moment from "moment";
 import { PageHeader } from "antd";
-import { Form, Input, SubmitButton, DatePicker } from "formik-antd";
+import { Form, SubmitButton, DatePicker } from "formik-antd";
 import history from "../../../services/history";
 import { useDispatch, useSelector } from "react-redux";
 import { loadRaffleRequest } from "../../../redux/modules/raffle/actions";
 import { ImageUpload } from "../../../components/imageUpload new";
 import { Formik } from "formik";
+import Input from "../../../components/input";
 
 export default function UpdateRaffle({ match }) {
   const dispatch = useDispatch();
@@ -64,13 +65,18 @@ export default function UpdateRaffle({ match }) {
         render={() => (
           <Form>
             <ImageUpload
+              label="Insira as imagens"
               firstImageName="firstImageId"
               secondImageName="secondImageId"
               thirdImageName="thirdImageId"
               defaultValueName="fileList"
             />
-            <Input name="title" placeholder="Título" />
-            <Input name="description" placeholder="Descrição" />
+            <Input name="title" placeholder="Título" label="Título" />
+            <Input
+              name="description"
+              placeholder="Descrição"
+              label="descrição"
+            />
             <DatePicker
               name="quotaExpirationDate"
               placeholder="Data da expiração da quota"
@@ -78,6 +84,7 @@ export default function UpdateRaffle({ match }) {
             <Input
               name="quotaPrice"
               placeholder="Preço da quota"
+              label="Preço da quota"
               type="number"
               prefix="R$"
               suffix="Reais"
@@ -85,12 +92,19 @@ export default function UpdateRaffle({ match }) {
             <Input
               name="quotaQuantity"
               placeholder="Quantidade de quotas"
+              label="Quantidade de quotas"
               type="number"
             />
             <Input
               name="allowedQuotasPerPurchase"
               placeholder="Quotas permitidas por compra"
+              label="Quotas permitidas por compra"
               type="number"
+            />
+            <Input
+              name="categoryId"
+              placeholder="Id de categoria"
+              label="Id de categoria"
             />
             <SubmitButton>enviar</SubmitButton>
           </Form>
