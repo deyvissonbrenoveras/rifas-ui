@@ -4,6 +4,7 @@ import Logon from "../pages/logon";
 import CreateRaffle from "../pages/dashboard/createRaffle";
 import DashboardLayout from "../pages/layouts/dashboardLayout";
 import ViewRaffles from "../pages/dashboard/viewRaffles";
+import UpdateRaffle from "../pages/dashboard/updateRaffle";
 
 export default function Routes() {
   return (
@@ -13,6 +14,13 @@ export default function Routes() {
         exact
         path="/create-raffle"
         component={CreateRaffle}
+        layout={DashboardLayout}
+        authRequired
+      />
+      <Route
+        exact
+        path="/update-raffle/:id"
+        component={UpdateRaffle}
         layout={DashboardLayout}
         authRequired
       />
