@@ -5,6 +5,7 @@ import { Upload, Form } from "antd";
 import api from "../../services/api";
 
 export function ImageUpload({
+  label,
   firstImageName,
   secondImageName,
   thirdImageName,
@@ -66,22 +67,25 @@ export function ImageUpload({
 
   return (
     <>
-      <Upload
-        listType="picture-card"
-        maxCount={3}
-        customRequest={handleChange}
-        fileList={fileList}
-        onChange={(e) => {
-          if (e) {
-            setFileList(e.fileList);
-          }
-        }}
-      >
-        <div>
-          {loading ? <LoadingOutlined /> : <PlusOutlined />}
-          <div style={{ marginTop: 8 }}>Upload</div>
-        </div>
-      </Upload>
+      <label>
+        {label}
+        <Upload
+          listType="picture-card"
+          maxCount={3}
+          customRequest={handleChange}
+          fileList={fileList}
+          onChange={(e) => {
+            if (e) {
+              setFileList(e.fileList);
+            }
+          }}
+        >
+          <div>
+            {loading ? <LoadingOutlined /> : <PlusOutlined />}
+            <div style={{ marginTop: 8 }}>Upload</div>
+          </div>
+        </Upload>
+      </label>
     </>
   );
 }
