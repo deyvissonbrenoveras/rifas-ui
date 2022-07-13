@@ -79,7 +79,7 @@ export default function ViewRaffles() {
                     width={272}
                     alt="logo"
                     style={{ maxWidth: "100%" }}
-                    src={item.firstImage.url}
+                    src={item.firstImage ? item.firstImage.url : ""}
                   />
                 }
                 onClick={() => {
