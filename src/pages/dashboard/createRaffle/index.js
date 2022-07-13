@@ -30,7 +30,7 @@ export default function CreateRaffle() {
             <ImageUpload name="firstImageId" label="imagem 1" />
           </Col>
           <Col xs={24}>
-            <ImageUpload name="secondmageId" label="imagem 2" />
+            <ImageUpload name="secondImageId" label="imagem 2" />
           </Col>
           <Col xs={24}>
             <ImageUpload name="thirdImageId" label="imagem 3" />
