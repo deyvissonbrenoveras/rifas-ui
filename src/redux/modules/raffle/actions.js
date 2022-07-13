@@ -39,6 +39,20 @@ export function loadAllRafflesSuccess(raffles) {
   };
 }
 
+export function updateRaffleRequest(id, raffle) {
+  return {
+    type: "RAFFLE/UPDATE_RAFFLE_REQUEST",
+    payload: { id, raffle },
+  };
+}
+
+export function updateRaffleSuccess(raffle) {
+  return {
+    type: "RAFFLE/UPDATE_RAFFLE_SUCCESS",
+    payload: { raffle },
+  };
+}
+
 export function raffleFailed() {
   return {
     type: "RAFFLE/FAILED",
