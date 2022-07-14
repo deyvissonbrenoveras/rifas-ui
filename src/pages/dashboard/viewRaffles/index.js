@@ -1,18 +1,20 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import history from "../../../services/history";
 import { Row, Col, List, Space, PageHeader, Divider, Button, Spin } from "antd";
 import {
   LikeOutlined,
-  MessageOutlined,
-  StarOutlined,
+  AimOutlined,
+  DollarCircleOutlined,
   PlusOutlined,
 } from "@ant-design/icons";
 import { useDispatch, useSelector } from "react-redux";
 import { loadAllRafflesRequest } from "../../../redux/modules/raffle/actions";
 import LoadingIcon from "../../../components/loadingIcon";
+import RaffleStatusEnum from "../../../enums/RaffleStatusEnum";
 export default function ViewRaffles() {
   const dispatch = useDispatch();
   const { loading, raffles } = useSelector((store) => store.raffle);
+  const [rafflesToShow, setRafflesToShow] = useState([]);
 
   const IconText = ({ icon, text }) => (
     <Space>
@@ -24,6 +26,30 @@ export default function ViewRaffles() {
   useEffect(() => {
     dispatch(loadAllRafflesRequest());
   }, [dispatch]);
+
+  useEffect(() => {
+    if (raffles) {
+      setRafflesToShow(
+        raffles.map((raffle) => ({
+          ...raffle,
+          translatedStatus: getStatus(raffle.status),
+        }))
+      );
+    }
+  }, [raffles]);
+
+  function getStatus(raffleStatusEnum) {
+    switch (raffleStatusEnum) {
+      case RaffleStatusEnum.IN_PROGRESS:
+        return "Em andamento";
+      case RaffleStatusEnum.CLOSED:
+        return "Encerrada";
+      case RaffleStatusEnum.WAITING_FOR_PAYMENT:
+        return "Aguardando pagamento";
+      default:
+        return "";
+    }
+  }
 
   return loading ? (
     <LoadingIcon />
@@ -51,34 +77,32 @@ export default function ViewRaffles() {
             size="large"
             pagination={{
               onChange: (page) => {},
-              pageSize: 3,
+              pageSize: 10,
             }}
-            dataSource={raffles}
+            dataSource={rafflesToShow}
             renderItem={(item) => (
               <List.Item
                 key={item.id}
                 actions={[
                   <IconText
-                    icon={StarOutlined}
-                    text="156"
+                    icon={AimOutlined}
+                    text={item.quotaQuantity}
                     key="list-vertical-star-o"
                   />,
                   <IconText
-                    icon={LikeOutlined}
-                    text="156"
+                    icon={DollarCircleOutlined}
+                    text={item.quotaPrice}
                     key="list-vertical-like-o"
-                  />,
-                  <IconText
-                    icon={MessageOutlined}
-                    text="2"
-                    key="list-vertical-message"
                   />,
                 ]}
                 extra={
                   <img
-                    width={272}
                     alt="logo"
-                    style={{ maxWidth: "100%" }}
+                    style={{
+                      width: "100%",
+                      maxWidth: 300,
+                      maxHeight: 200,
+                    }}
                     src={item.firstImage ? item.firstImage.url : ""}
                   />
                 }
@@ -88,7 +112,7 @@ export default function ViewRaffles() {
               >
                 <List.Item.Meta
                   title={<a href={item.href}>{item.title}</a>}
-                  description={item.status}
+                  description={item.translatedStatus}
                 />
                 {item.description}
               </List.Item>
