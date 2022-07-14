@@ -1,18 +1,21 @@
 import React from "react";
-import { Input as InputAntd } from "formik-antd";
-import { Label } from "./styles";
+import { useField } from "formik";
+import { Input as InputAntd, Form } from "formik-antd";
+import { Label, ErrorMessage } from "../common";
 
-export default function Input({
-  label,
-  name,
-  placeholder,
-  type = "text",
-  ...rest
-}) {
+export function Input({ label, name, placeholder, type = "text", ...rest }) {
+  const [field, meta, helpers] = useField(name);
   return (
     <Label>
       {label}
-      <InputAntd name={name} placeholder={placeholder} type={type} {...rest} />
+      <InputAntd
+        status={meta.error && "error"}
+        name={name}
+        placeholder={placeholder}
+        type={type}
+        {...rest}
+      />
+      <ErrorMessage>{meta.error}</ErrorMessage>
     </Label>
   );
 }
