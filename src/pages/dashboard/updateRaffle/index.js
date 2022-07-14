@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { PageHeader, Row, Col } from "antd";
-import { Form, SubmitButton, DatePicker } from "formik-antd";
+import { Form, SubmitButton } from "formik-antd";
 import history from "../../../services/history";
 import { useDispatch, useSelector } from "react-redux";
 import { loadRaffleRequest } from "../../../redux/modules/raffle/actions";
 import { ImageUpload } from "../../../components/imageUpload";
 import { Formik } from "formik";
-import { Input } from "../../../components";
+import { Input, DatePicker } from "../../../components";
+
+import { raffleValidationSchema } from "../../../validations";
 
 export default function UpdateRaffle({ match }) {
   const dispatch = useDispatch();
@@ -60,6 +62,7 @@ export default function UpdateRaffle({ match }) {
       <Row>
         <Col xs={24} md={18} lg={12}>
           <Formik
+            validationSchema={raffleValidationSchema}
             initialValues={raffleToUpdate}
             enableReinitialize
             onSubmit={onSubmit}
