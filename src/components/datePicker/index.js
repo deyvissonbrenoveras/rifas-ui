@@ -1,6 +1,7 @@
 import React from "react";
-import { DatePicker as DatePickerAntd, Form } from "formik-antd";
-import { Label } from "../common";
+import { useField } from "formik";
+import { DatePicker as DatePickerAntd } from "formik-antd";
+import { Label, ErrorMessage } from "../common";
 
 export function DatePicker({
   label,
@@ -9,17 +10,19 @@ export function DatePicker({
   type = "text",
   ...rest
 }) {
+  const [field, meta, helpers] = useField(name);
   return (
     <Label>
       {label}
-      <Form.Item name={name}>
-        <DatePickerAntd
-          name={name}
-          placeholder={placeholder}
-          type={type}
-          {...rest}
-        />
-      </Form.Item>
+      <DatePickerAntd
+        status={meta.error && "error"}
+        name={name}
+        placeholder={placeholder}
+        type={type}
+        style={{ display: "block" }}
+        {...rest}
+      />
+      <ErrorMessage>{meta.error}</ErrorMessage>
     </Label>
   );
 }
