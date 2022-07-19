@@ -14,8 +14,8 @@ export default function authReducer(state = INITIAL_STATE, action) {
       });
     case "RAFFLE/CREATE_SUCCESS":
       return produce(state, (draft) => {
-        draft.loading = false;
         draft.raffle = action.payload.raffle;
+        draft.loading = false;
       });
     case "RAFFLE/LOAD_ALL_REQUEST":
       return produce(state, (draft) => {
@@ -27,13 +27,13 @@ export default function authReducer(state = INITIAL_STATE, action) {
       });
     case "RAFFLE/LOAD_RAFFLE_SUCCESS":
       return produce(state, (draft) => {
-        draft.loading = false;
         draft.raffle = action.payload.raffle;
+        draft.loading = false;
       });
     case "RAFFLE/LOAD_ALL_SUCCESS":
       return produce(state, (draft) => {
-        draft.loading = false;
         draft.raffles = action.payload.raffles;
+        draft.loading = false;
       });
     case "RAFFLE/UPDATE_RAFFLE_REQUEST":
       return produce(state, (draft) => {
@@ -41,8 +41,8 @@ export default function authReducer(state = INITIAL_STATE, action) {
       });
     case "RAFFLE/UPDATE_RAFFLE_SUCCESS":
       return produce(state, (draft) => {
-        draft.loading = false;
         draft.raffle = action.payload.raffle;
+        draft.loading = false;
       });
     case "RAFFLE/FAILED":
       return produce(state, (draft) => {
