@@ -17,6 +17,7 @@ import {
   QuotasFilterContainer,
   Quota,
   QuotasContainer,
+  QuotaPrice,
 } from "./style";
 
 export default function OrderRaffle({ match }) {
@@ -73,7 +74,7 @@ export default function OrderRaffle({ match }) {
   ) : (
     <Container>
       <Col xs={24}>
-        <h1>{raffle.title}</h1>
+        <h1>Rifa-se: {raffle.title}</h1>
         <Carousel autoplay>
           {raffle.firstImage && (
             <Img src={raffle.firstImage.url} alt={raffle.title} />
@@ -86,6 +87,7 @@ export default function OrderRaffle({ match }) {
           )}
         </Carousel>
         {raffle.description && <Description>{raffle.description}</Description>}
+        <QuotaPrice>Preço por quota: ${raffle.quotaPrice}</QuotaPrice>
       </Col>
       <Quotas>
         <QuotasFilterContainer>
@@ -130,13 +132,14 @@ export default function OrderRaffle({ match }) {
       <Button
         disabled={!quotaList.find((quota) => quota.selected)}
         type="primary"
+        block
         onClick={() => showModal()}
       >
         Comprar quotas selecionadas
       </Button>
 
       <Modal
-        title="Comprar quota"
+        title="Comprar quotas selecionadas"
         visible={isModalVisible}
         okText="Comprar"
         cancelText="Cancelar"

@@ -2,8 +2,15 @@ import styled from "styled-components";
 import { Carousel as CarouselAntd, Row, Image } from "antd";
 
 export const Container = styled(Row)`
+  background: rgb(255, 255, 255);
+  background: linear-gradient(
+    228deg,
+    rgba(255, 255, 255, 1) 63%,
+    rgba(246, 246, 246, 1) 100%
+  );
   h1 {
     text-align: center;
+    margin: 40px 0;
   }
 `;
 
@@ -29,21 +36,30 @@ export const Carousel = styled(CarouselAntd)`
 `;
 
 export const Description = styled.div`
-  width: 99%;
+  width: 97%;
   max-height: 250px;
   font-size: 20px;
   padding: 5px;
   margin: 10px 5px;
-  border: 1px solid gray;
+  border: 1px solid #f2f2f2;
   border-radius: 5px;
 `;
 
+export const QuotaPrice = styled.div`
+  font-size: 22px;
+  padding: 5px 15px;
+  margin: 10px 5px;
+  text-align: right;
+`;
+
 export const Quotas = styled.div`
+  margin: 30px 0;
   padding: 5px;
 `;
 
 export const QuotasFilterContainer = styled.div`
-  padding: 5px;
+  padding: 15px;
+  margin-bottom: 17px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
