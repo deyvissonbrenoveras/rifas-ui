@@ -1,10 +1,14 @@
 import { Switch } from "react-router-dom";
 import Route from "./Route";
+
 import Logon from "../pages/logon";
 import CreateRaffle from "../pages/dashboard/createRaffle";
-import DashboardLayout from "../pages/layouts/dashboardLayout";
 import ViewRaffles from "../pages/dashboard/viewRaffles";
 import UpdateRaffle from "../pages/dashboard/updateRaffle";
+import OrderRaffle from "../pages/orderRaffle";
+
+import DashboardLayout from "../pages/layouts/dashboardLayout";
+import OrderRaffleLayout from "../pages/layouts/orderRaffleLayout";
 
 export default function Routes() {
   return (
@@ -30,6 +34,13 @@ export default function Routes() {
         component={ViewRaffles}
         layout={DashboardLayout}
         authRequired
+      />
+
+      <Route
+        exact
+        path="/order-raffle/:id"
+        component={OrderRaffle}
+        layout={OrderRaffleLayout}
       />
 
       <Route exact path="/" component={<div>helloworld</div>} />
