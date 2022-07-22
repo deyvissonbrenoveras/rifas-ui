@@ -8,6 +8,8 @@ import { Input } from "../../components";
 import { loadRaffleRequest } from "../../redux/modules/raffle/actions";
 import LoadingIcon from "../../components/loadingIcon";
 
+import { createOrderRequest } from "../../redux/modules/order/actions";
+
 import {
   Container,
   Img,
@@ -66,7 +68,19 @@ export default function OrderRaffle({ match }) {
   const formRef = useRef();
 
   function onSubmit(data) {
-    console.log(data);
+    const { id: raffleId } = match.params;
+
+    const orderRequest = {
+      ...data,
+      raffleId,
+      quotas: quotaList.filter((q) => q.selected).map((q) => q.number),
+    };
+    console.log(orderRequest);
+    dispatch(
+      createOrderRequest(orderRequest, () => {
+        handleCancel();
+      })
+    );
   }
 
   return loading ? (
