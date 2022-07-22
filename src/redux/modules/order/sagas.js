@@ -5,10 +5,11 @@ import { createOrderSuccess, orderFailed } from "./actions";
 
 function* createOrder({ payload }) {
   try {
-    const { order } = payload;
+    const { order, successCallback } = payload;
     const response = yield call(api.post, "orders", order);
     yield put(createOrderSuccess(response.data));
     message.success("Pedido realizado com sucesso!");
+    successCallback();
   } catch (err) {
     yield put(orderFailed());
     message.error(
@@ -16,4 +17,4 @@ function* createOrder({ payload }) {
     );
   }
 }
-export default all([takeLatest("RAFFLE/CREATE_REQUEST", createOrder)]);
+export default all([takeLatest("ORDER/CREATE_REQUEST", createOrder)]);

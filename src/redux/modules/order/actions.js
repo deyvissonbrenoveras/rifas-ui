@@ -1,7 +1,7 @@
-export function createOrderRequest(order) {
+export function createOrderRequest(order, successCallback) {
   return {
     type: "ORDER/CREATE_REQUEST",
-    payload: { order },
+    payload: { order, successCallback },
   };
 }
 
