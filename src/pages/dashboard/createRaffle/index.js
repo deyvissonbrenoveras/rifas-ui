@@ -29,10 +29,10 @@ export default function CreateRaffle() {
         <Col xs={24} md={18} lg={12}>
           <Formik
             initialValues={{
-              firstImageId: 5,
+              firstImageId: 1,
               title: "",
               description: "",
-              quotaExpirationDate: "",
+              quotaExpirationInDays: "",
               quotaPrice: "",
               quotaQuantity: "",
               allowedQuotasPerPurchase: "",
@@ -54,10 +54,11 @@ export default function CreateRaffle() {
                   placeholder="Descrição"
                   label="Descrição"
                 />
-                <DatePicker
-                  name="quotaExpirationDate"
-                  label="Data da expiração da quota"
-                  placeholder="Data da expiração da quota"
+                <Input
+                  name="quotaExpirationInDays"
+                  label="Quantidade de dias para expiração da quota não paga"
+                  placeholder="Quantidade de dias para expiração da quota não paga"
+                  type="number"
                 />
                 <Input
                   name="quotaPrice"

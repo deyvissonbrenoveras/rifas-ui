@@ -26,7 +26,7 @@ export default function OrderRaffle({ match }) {
   const dispatch = useDispatch();
   const { raffle, loading } = useSelector((store) => store.raffle);
   const [quotaFilter, setQuotaFilter] = useState(0);
-  const [quotaList, setQuotaList] = useState();
+  const [quotaList, setQuotaList] = useState([]);
 
   useEffect(() => {
     const { id } = match.params;
@@ -34,12 +34,20 @@ export default function OrderRaffle({ match }) {
     dispatch(loadRaffleRequest(id));
   }, [match, dispatch]);
 
+  useEffect(() => {
+    if (raffle && raffle.quotas) {
+      setQuotaList(
+        raffle.quotas.map((quota) => ({ ...quota, selected: false }))
+      );
+    }
+  }, [raffle]);
+
   const onQuotaFilterChange = (e) => {
     setQuotaFilter(e.target.value);
   };
 
   function addQuotaToCart(quota) {
-    if (quota.available) {
+    if (!quota.order) {
       const updatedQuotaList = [...quotaList];
       const selectedQuota = updatedQuotaList.find(
         (q) => quota.number === q.number
@@ -65,6 +73,11 @@ export default function OrderRaffle({ match }) {
   function handleCancel() {
     setIsModalVisible(false);
   }
+
+  function getSelectedQuotas() {
+    return quotaList.filter((q) => q.selected);
+  }
+
   const formRef = useRef();
 
   function onSubmit(data) {
@@ -73,12 +86,16 @@ export default function OrderRaffle({ match }) {
     const orderRequest = {
       ...data,
       raffleId,
-      quotas: quotaList.filter((q) => q.selected).map((q) => q.number),
+      quotas: getSelectedQuotas().map((q) => q.number),
     };
-    console.log(orderRequest);
     dispatch(
       createOrderRequest(orderRequest, () => {
-        handleCancel();
+        setIsModalVisible(false);
+        setQuotaList(
+          quotaList
+            .map((q) => (q.selected ? { ...q, order: data } : q))
+            .map((q) => ({ ...q, selected: false }))
+        );
       })
     );
   }
@@ -117,31 +134,31 @@ export default function OrderRaffle({ match }) {
             <Radio value={2}>Apenas indisponíveis</Radio>
           </Radio.Group>
         </QuotasFilterContainer>
-        <QuotasContainer>
-          {/* {raffle.quotas &&
-            raffle.quotas */}
-          {quotaList
-            .filter((quota) => {
-              switch (quotaFilter) {
-                case 1:
-                  return quota.available;
-                case 2:
-                  return !quota.available;
-                default:
-                  return true;
-              }
-            })
-            .map((quota) => (
-              <Quota
-                available={quota.available}
-                selected={quota.selected}
-                key={quota.number}
-                onClick={() => addQuotaToCart(quota)}
-              >
-                {quota.number}
-              </Quota>
-            ))}
-        </QuotasContainer>
+        {quotaList && (
+          <QuotasContainer>
+            {quotaList
+              .filter((quota) => {
+                switch (quotaFilter) {
+                  case 1:
+                    return !quota.order;
+                  case 2:
+                    return !!quota.order;
+                  default:
+                    return true;
+                }
+              })
+              .map((quota) => (
+                <Quota
+                  available={!quota.order}
+                  selected={quota.selected}
+                  key={quota.number}
+                  onClick={() => addQuotaToCart(quota)}
+                >
+                  {quota.number}
+                </Quota>
+              ))}
+          </QuotasContainer>
+        )}
       </Quotas>
       <Button
         disabled={!quotaList.find((quota) => quota.selected)}

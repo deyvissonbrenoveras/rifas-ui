@@ -7,9 +7,9 @@ export const raffleValidationSchema = Yup.object().shape({
   description: Yup.string()
     .max(150, "Máximo de 150 caracteres permitidos")
     .required("A descrição é obrigatória"),
-  quotaExpirationDate: Yup.date().required(
-    "A data de expiração da quota é obrigatória"
-  ),
+  quotaExpirationInDays: Yup.number()
+    .positive("Insira um valor positivo")
+    .required("O prazo de exiração da quota é obrigatório"),
   quotaPrice: Yup.number()
     .positive("Insira um valor positivo")
     .required("O preço da quota é obrigatório"),

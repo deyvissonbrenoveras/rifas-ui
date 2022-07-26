@@ -81,10 +81,11 @@ export default function UpdateRaffle({ match }) {
                   placeholder="Descrição"
                   label="descrição"
                 />
-                <DatePicker
-                  name="quotaExpirationDate"
-                  label="Data da expiração da quota"
-                  placeholder="Data da expiração da quota"
+                <Input
+                  name="quotaExpirationInDays"
+                  label="Quantidade de dias para expiração da quota não paga"
+                  placeholder="Quantidade de dias para expiração da quota não paga"
+                  type="number"
                 />
                 <Input
                   name="quotaPrice"
