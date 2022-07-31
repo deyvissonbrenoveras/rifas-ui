@@ -5,7 +5,7 @@ const INITIAL_STATE = {
   order: {},
 };
 
-export default function authReducer(state = INITIAL_STATE, action) {
+export default function orderReducer(state = INITIAL_STATE, action) {
   switch (action.type) {
     case "ORDER/CREATE_REQUEST":
       return produce(state, (draft) => {

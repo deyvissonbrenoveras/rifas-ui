@@ -6,7 +6,7 @@ const INITIAL_STATE = {
   raffles: [],
 };
 
-export default function authReducer(state = INITIAL_STATE, action) {
+export default function raffleReducer(state = INITIAL_STATE, action) {
   switch (action.type) {
     case "RAFFLE/CREATE_REQUEST":
       return produce(state, (draft) => {
