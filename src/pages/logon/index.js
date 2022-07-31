@@ -15,7 +15,7 @@ function Logon() {
   return (
     <>
       <Row justify="center" align="center">
-        <h1>Rifas</h1>
+        <h1>Entrar</h1>
         <Col span={24}>
           <Row justify="center" align="center">
             <Col xs={24} sm={12} md={8} lg={6}>
