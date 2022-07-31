@@ -9,11 +9,13 @@ import OrderRaffle from "../pages/orderRaffle";
 
 import DashboardLayout from "../pages/layouts/dashboardLayout";
 import OrderRaffleLayout from "../pages/layouts/orderRaffleLayout";
+import CreateAccount from "../pages/createAccount";
 
 export default function Routes() {
   return (
     <Switch>
       <Route exact path="/logon" component={Logon} />
+      <Route exact path="/create-account" component={CreateAccount} />
       <Route
         exact
         path="/create-raffle"
