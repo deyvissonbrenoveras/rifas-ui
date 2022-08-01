@@ -3,9 +3,9 @@ import api from "../../../services/api";
 import { message } from "antd";
 import { createOrderSuccess, orderFailed } from "./actions";
 
-function* createOrder({ payload }) {
+function* createOrder({ payload, successCallback }) {
   try {
-    const { order, successCallback } = payload;
+    const { order } = payload;
     const response = yield call(api.post, "orders", order);
     yield put(createOrderSuccess(response.data));
     message.success("Pedido realizado com sucesso!");
