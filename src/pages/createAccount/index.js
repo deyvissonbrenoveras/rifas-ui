@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux/es/exports";
 import { Formik } from "formik";
 import { Form, SubmitButton } from "formik-antd";
@@ -10,6 +11,8 @@ import { InputPassword } from "../../components/password";
 import { createAccountValidationSchema } from "../../validations/createAccountValidation";
 
 import { createUserRequest } from "../../redux/modules/user/actions";
+
+import "./styles.css";
 
 export default function CreateAccount() {
   const dispatch = useDispatch();
@@ -57,10 +60,15 @@ export default function CreateAccount() {
                       placeholder="Digite sua senha novamente"
                       label="Confirmação de senha"
                     />
-                    <SubmitButton>Criar conta</SubmitButton>
+                    <SubmitButton type="primary" shape="round" block>
+                      Criar conta
+                    </SubmitButton>
                   </Form>
                 )}
               />
+              <Link to="logon" className="link">
+                Já possui uma conta? clique aqui para entrar
+              </Link>
             </Col>
           </Row>
         </Col>

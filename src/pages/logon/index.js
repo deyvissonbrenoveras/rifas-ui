@@ -4,6 +4,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { logonRequest } from "../../redux/modules/auth/actions";
 
 import { UserOutlined } from "@ant-design/icons";
+import { Link } from "react-router-dom";
+import "./styles.css";
+
 function Logon() {
   const dispatch = useDispatch();
   const loading = useSelector((store) => store.auth.loading);
@@ -41,6 +44,9 @@ function Logon() {
                   Entrar
                 </Button>
               </Form>
+              <Link to="create-account" className="link">
+                Ainda não possui uma conta? clique aqui para criar
+              </Link>
             </Col>
           </Row>
         </Col>
