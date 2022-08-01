@@ -3,12 +3,13 @@ import api from "../../../services/api";
 import { message } from "antd";
 import { createUserSuccess, userFailed } from "./actions";
 
-function* createUser({ payload }) {
+function* createUser({ payload, successCallback }) {
   try {
     const { user } = payload;
     const response = yield call(api.post, "users", user);
     yield put(createUserSuccess(response.data));
     message.success("O usuário foi criado com sucesso!");
+    successCallback && successCallback();
   } catch (err) {
     yield put(userFailed());
     message.error(

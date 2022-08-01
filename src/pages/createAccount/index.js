@@ -13,11 +13,16 @@ import { createAccountValidationSchema } from "../../validations/createAccountVa
 import { createUserRequest } from "../../redux/modules/user/actions";
 
 import "./styles.css";
+import history from "../../services/history";
 
 export default function CreateAccount() {
   const dispatch = useDispatch();
   function onSubmit(data, { setSubmitting }) {
-    dispatch(createUserRequest(data));
+    dispatch(
+      createUserRequest(data, () => {
+        history.push("logon");
+      })
+    );
     setSubmitting(false);
   }
   return (

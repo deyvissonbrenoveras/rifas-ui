@@ -1,7 +1,8 @@
-export function createUserRequest(user) {
+export function createUserRequest(user, successCallback) {
   return {
     type: "USER/CREATE_REQUEST",
     payload: { user },
+    successCallback,
   };
 }
 
