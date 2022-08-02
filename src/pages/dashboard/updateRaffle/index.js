@@ -4,7 +4,7 @@ import { Form, SubmitButton } from "formik-antd";
 import history from "../../../services/history";
 import { useDispatch, useSelector } from "react-redux";
 import { loadRaffleRequest } from "../../../redux/modules/raffle/actions";
-import { ImageUpload } from "../../../components/imageUpload";
+import ImgUpload from "../../../components/imgUpload";
 import { Formik } from "formik";
 import { Input, DatePicker } from "../../../components";
 
@@ -68,12 +68,10 @@ export default function UpdateRaffle({ match }) {
             onSubmit={onSubmit}
             render={() => (
               <Form>
-                <ImageUpload
-                  label="Insira as imagens"
-                  firstImageName="firstImageId"
-                  secondImageName="secondImageId"
-                  thirdImageName="thirdImageId"
-                  defaultValueName="fileList"
+                <ImgUpload
+                  label="Insira a imagem principal"
+                  name="firstImage"
+                  submitName="firstImageId"
                 />
                 <Input name="title" placeholder="Título" label="Título" />
                 <Input

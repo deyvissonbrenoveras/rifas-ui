@@ -5,10 +5,10 @@ import { Formik } from "formik";
 import history from "../../../services/history";
 import { useDispatch } from "react-redux";
 import { createRaffleRequest } from "../../../redux/modules/raffle/actions";
-import { ImageUpload } from "../../../components/imageUpload";
-import { Input, DatePicker } from "../../../components";
+import { Input } from "../../../components";
 
 import { raffleValidationSchema } from "../../../validations";
+import ImgUpload from "../../../components/imgUpload";
 
 export default function CreateRaffle() {
   const dispatch = useDispatch();
@@ -42,12 +42,11 @@ export default function CreateRaffle() {
             onSubmit={onSubmit}
             render={() => (
               <Form>
-                {/* <ImageUpload
-                  label="Insira as imagens"
-                  firstImageName="firstImageId"
-                  secondImageName="secondImageId"
-                  thirdImageName="thirdImageId"
-                /> */}
+                <ImgUpload
+                  label="Insira a imagem principal"
+                  name="firstImage"
+                  submitName="firstImageId"
+                />
                 <Input name="title" placeholder="Título" label="Título" />
                 <Input
                   name="description"
