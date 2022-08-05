@@ -6,8 +6,7 @@ import { Container } from "./styles";
 import { useEffect } from "react";
 
 export default function ImgUpload({ name, submitName, label, ...rest }) {
-  const [submitNameField, submitNameMeta, submitNameHelpers] =
-    useField(submitName);
+  const submitNameHelpers = useField(submitName)[2];
   const [field] = useField(name);
 
   const [file, setFile] = useState(null);
