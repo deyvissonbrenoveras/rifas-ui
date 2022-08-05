@@ -16,11 +16,11 @@ export default function ImgUpload({ name, submitName, label, ...rest }) {
   const { setValue: submitNameSetValue } = submitNameHelpers;
 
   useEffect(() => {
-    if (field.value) {
+    if (field.value && preview === null) {
       setFile(field.value.id);
       setPreview(field.value.url);
     }
-  }, [field]);
+  }, [field, preview]);
 
   async function handleChange(e) {
     const data = new FormData();
