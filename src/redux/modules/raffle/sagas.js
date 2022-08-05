@@ -6,6 +6,7 @@ import {
   raffleFailed,
   loadAllRafflesSuccess,
   loadAllRaffleSuccess,
+  updateRaffleSuccess,
 } from "./actions";
 
 function* createRaffle({ payload }) {
@@ -47,8 +48,22 @@ function* loadRaffle({ payload }) {
   }
 }
 
+function* updateRaffle({ payload }) {
+  const { id, raffle } = payload;
+  try {
+    const response = yield call(api.put, `raffles/${id}`, raffle);
+    yield put(updateRaffleSuccess(response.data));
+  } catch (err) {
+    yield put(raffleFailed());
+    message.error(
+      "Erro ao atualizar a rifa, por favor entre em contato com nossa equipe"
+    );
+  }
+}
+
 export default all([
   takeLatest("RAFFLE/CREATE_REQUEST", createRaffle),
   takeLatest("RAFFLE/LOAD_ALL_REQUEST", loadRaffles),
   takeLatest("RAFFLE/LOAD_RAFFLE_REQUEST", loadRaffle),
+  takeLatest("RAFFLE/UPDATE_RAFFLE_REQUEST", updateRaffle),
 ]);

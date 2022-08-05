@@ -3,24 +3,26 @@ import { PageHeader, Row, Col } from "antd";
 import { Form, SubmitButton } from "formik-antd";
 import history from "../../../services/history";
 import { useDispatch, useSelector } from "react-redux";
-import { loadRaffleRequest } from "../../../redux/modules/raffle/actions";
+import {
+  loadRaffleRequest,
+  updateRaffleRequest,
+} from "../../../redux/modules/raffle/actions";
 import ImgUpload from "../../../components/imgUpload";
 import { Formik } from "formik";
-import { Input, DatePicker } from "../../../components";
+import { Input } from "../../../components";
 
 import { raffleValidationSchema } from "../../../validations";
 
 export default function UpdateRaffle({ match }) {
+  const { id: raffleId } = match.params;
   const dispatch = useDispatch();
   const { raffle, loading } = useSelector((store) => store.raffle);
 
   const [raffleToUpdate, setRaffleToUpdate] = useState({});
 
   useEffect(() => {
-    const { id } = match.params;
-
-    dispatch(loadRaffleRequest(id));
-  }, [match, dispatch]);
+    dispatch(loadRaffleRequest(raffleId));
+  }, [raffleId, dispatch]);
 
   useEffect(() => {
     if (raffle) {
@@ -48,7 +50,7 @@ export default function UpdateRaffle({ match }) {
   }
 
   function onSubmit(data, { setSubmitting }) {
-    console.log(data);
+    dispatch(updateRaffleRequest(raffleId, data));
     setSubmitting(false);
   }
 
