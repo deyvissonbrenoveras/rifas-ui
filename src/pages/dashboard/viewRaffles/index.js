@@ -86,12 +86,12 @@ export default function ViewRaffles() {
                 actions={[
                   <IconText
                     icon={AimOutlined}
-                    text={item.quotaQuantity}
+                    text={`Quotas: ${item.quotaQuantity}`}
                     key="list-vertical-star-o"
                   />,
                   <IconText
                     icon={DollarCircleOutlined}
-                    text={item.quotaPrice}
+                    text={`Preço: ${item.quotaPrice}`}
                     key="list-vertical-like-o"
                   />,
                 ]}
