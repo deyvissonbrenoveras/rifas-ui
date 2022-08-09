@@ -53,6 +53,7 @@ function* updateRaffle({ payload }) {
   try {
     const response = yield call(api.put, `raffles/${id}`, raffle);
     yield put(updateRaffleSuccess(response.data));
+    message.success("A rifa foi atualizada com sucesso!");
   } catch (err) {
     yield put(raffleFailed());
     message.error(
