@@ -27,6 +27,8 @@ export default function OrderRaffle({ match }) {
   const { raffle, loading } = useSelector((store) => store.raffle);
   const [quotaFilter, setQuotaFilter] = useState(0);
   const [quotaList, setQuotaList] = useState([]);
+  const [selectedQuotaQuantity, setSelectedQuotaQuantity] = useState();
+  const [totalPrice, setTotalPrice] = useState();
 
   useEffect(() => {
     const { id } = match.params;
@@ -41,6 +43,12 @@ export default function OrderRaffle({ match }) {
       );
     }
   }, [raffle]);
+
+  useEffect(() => {
+    const selectedQuotasQuantity = getSelectedQuotas().length;
+    setSelectedQuotaQuantity(selectedQuotasQuantity);
+    setTotalPrice(selectedQuotaQuantity * raffle.quotaPrice);
+  }, [quotaList, selectedQuotaQuantity, raffle.quotaPrice, getSelectedQuotas]);
 
   const onQuotaFilterChange = (e) => {
     setQuotaFilter(e.target.value);
@@ -177,6 +185,9 @@ export default function OrderRaffle({ match }) {
         onOk={handleOk}
         onCancel={handleCancel}
       >
+        <div>Preço por cota: ${raffle.quotaPrice}</div>
+        <div>Quantidade de cotas selecionadas: {selectedQuotaQuantity}</div>
+        <div>Total: ${totalPrice}</div>
         <Formik
           initialValues={{
             name: "",
