@@ -96,12 +96,6 @@ export default function UpdateRaffle({ match }) {
                   suffix="Reais"
                 />
                 <Input
-                  name="quotaQuantity"
-                  placeholder="Quantidade de quotas"
-                  label="Quantidade de quotas"
-                  type="number"
-                />
-                <Input
                   name="allowedQuotasPerPurchase"
                   placeholder="Quotas permitidas por compra"
                   label="Quotas permitidas por compra"
