@@ -16,7 +16,7 @@ import { raffleValidationSchema } from "../../../validations";
 export default function UpdateRaffle({ match }) {
   const { id: raffleId } = match.params;
   const dispatch = useDispatch();
-  const { raffle, loading } = useSelector((store) => store.raffle);
+  const { raffle } = useSelector((store) => store.raffle);
 
   const [raffleToUpdate, setRaffleToUpdate] = useState({});
 
