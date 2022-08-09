@@ -17,8 +17,7 @@ export const Container = styled(Row)`
 export const Img = styled(Image)`
   text-align: center;
   width: 100%;
-  height: 100%;
-  max-width: 300px;
+  max-width: 500px;
   max-height: 300px;
 `;
 
