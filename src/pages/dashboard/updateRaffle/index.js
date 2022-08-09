@@ -70,11 +70,29 @@ export default function UpdateRaffle({ match }) {
             onSubmit={onSubmit}
             render={() => (
               <Form>
-                <ImgUpload
-                  label="Insira a imagem principal"
-                  name="firstImage"
-                  submitName="firstImageId"
-                />
+                <Row justify="space-around">
+                  <Col xs={24} sm={10} md={8}>
+                    <ImgUpload
+                      label="Insira a imagem principal"
+                      name="firstImage"
+                      submitName="firstImageId"
+                    />
+                  </Col>
+                  <Col xs={24} sm={10} md={8}>
+                    <ImgUpload
+                      label="Insira a imagem secundária"
+                      name="secondImage"
+                      submitName="secondImageId"
+                    />
+                  </Col>
+                  <Col xs={24} sm={10} md={8}>
+                    <ImgUpload
+                      label="Insira a última imagem"
+                      name="thirdImage"
+                      submitName="thirdImageId"
+                    />
+                  </Col>
+                </Row>
                 <Input name="title" placeholder="Título" label="Título" />
                 <Input
                   name="description"
