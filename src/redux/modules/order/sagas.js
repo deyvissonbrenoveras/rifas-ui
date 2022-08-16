@@ -1,7 +1,11 @@
 import { takeLatest, all, call, put } from "redux-saga/effects";
 import api from "../../../services/api";
 import { message } from "antd";
-import { createOrderSuccess, orderFailed } from "./actions";
+import {
+  createOrderSuccess,
+  orderFailed,
+  loadOrdersByRaffleIdSuccess,
+} from "./actions";
 
 function* createOrder({ payload, successCallback }) {
   try {
@@ -17,4 +21,19 @@ function* createOrder({ payload, successCallback }) {
     );
   }
 }
-export default all([takeLatest("ORDER/CREATE_REQUEST", createOrder)]);
+function* loadOrdersByRaffleId({ payload }) {
+  try {
+    const { raffleId } = payload;
+    const response = yield call(api.get, `raffles/${raffleId}/orders`);
+    yield put(loadOrdersByRaffleIdSuccess(response.data));
+  } catch (err) {
+    yield put(orderFailed());
+    message.error(
+      "Erro ao obter pedidos, por favor entre em contato com nossa equipe"
+    );
+  }
+}
+export default all([
+  takeLatest("ORDER/CREATE_REQUEST", createOrder),
+  takeLatest("ORDER/LOAD_BY_RAFFLE_ID_REQUEST", loadOrdersByRaffleId),
+]);
